@@ -1,4 +1,4 @@
-# Nano Icon Factory
+# Nano Icon
 
 Icon factory for Nano Adblocker
 
