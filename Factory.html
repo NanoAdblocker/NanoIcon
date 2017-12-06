@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="jspenguin2017" />
+    <title>Icon Generator</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <style>
+        /* Debug scalling */
+        :root {
+            --scale: 1;
+        }
+    </style>
+    <script>
+        const scale = getComputedStyle(document.documentElement).getPropertyValue("--scale");
+    </script>
+</head>
+<body style="background-color:ghostwhite;">
+    <p id="mousePos" style="position:absolute; left:calc(var(--scale) * 128px + 40px); top:8px; margin:0;">(0, 0)</p>
+    <canvas height="128" width="128" style="width:calc(var(--scale) * 128px); height:calc(var(--scale) * 128px); image-rendering:pixelated;"></canvas>
+    <script>
+        const canvas = document.querySelector("canvas");
+        const context = canvas.getContext("2d");
+
+        {
+            // Show coordinate on mouse move
+            let locked = false;
+            const rect = canvas.getBoundingClientRect();
+            const update = (e) => {
+                const x = ((e.clientX - rect.left) / scale) | 0;
+                const y = ((e.clientY - rect.top) / scale) | 0;
+                document.getElementById("mousePos").innerHTML = `(${x}, ${y})`;
+            };
+            canvas.addEventListener("mousemove", (e) => {
+                if (!locked) {
+                    update(e);
+                }
+            });
+            canvas.addEventListener("click", (e) => {
+                update(e);
+                locked = !locked;
+            });
+        }
+
+        {
+            // Hexagone
+            context.lineWidth = 6;
+
+            context.beginPath();
+            context.moveTo(
+                128 / 2 + 120 / 2 * Math.cos(Math.PI / 6),
+                128 / 2 + 120 / 2 * Math.sin(Math.PI / 6),
+            );
+            for (let side = 0; side <= 6; side++) {
+                context.lineTo(
+                    128 / 2 + 120 / 2 * Math.cos((side * 2 + 1) * Math.PI / 6),
+                    128 / 2 + 120 / 2 * Math.sin((side * 2 + 1) * Math.PI / 6),
+                );
+            }
+            context.closePath();
+
+            context.fillStyle = "palegreen";
+            //context.fillStyle = "lightgrey";
+
+            context.fill();
+            context.strokeStyle = "black";
+            context.stroke();
+        }
+
+        {
+            // Nano symbol
+            context.font = "90px Arial Black";
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+
+            context.fillStyle = "white";
+            context.fillText("n", 128 / 2 + 1, 128 / 2 - 12);
+
+            context.lineWidth = 4;
+            context.strokeStyle = "black";
+            context.strokeText("n", 128 / 2 + 1, 128 / 2 - 12);
+        }
+    </script>
+</body>
+</html>
