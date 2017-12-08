@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -59,8 +59,13 @@
             }
             context.closePath();
 
-            context.fillStyle = "lightpink";
-            //context.fillStyle = "lightgrey";
+            if (true) {
+                // On
+                context.fillStyle = "lightpink";
+            } else {
+                // Off
+                context.fillStyle = "lightgrey";
+            }
 
             context.fill();
             context.strokeStyle = "black";
@@ -68,13 +73,21 @@
         }
 
         {
-            // Nano symbol
-            context.font = "90px Comic Sans MS";
+            // Letter
             context.textAlign = "center";
             context.textBaseline = "middle";
 
             context.fillStyle = "black";
-            context.fillText("n", 128 / 2 - 1, 128 / 2 - 13);
+
+            if (false) {
+                // Nano Adblocker
+                context.font = "90px Comic Sans MS";
+                context.fillText("n", 128 / 2 - 1, 128 / 2 - 13);
+            } else {
+                // Nano Defender
+                context.font = "80px Comic Sans MS";
+                context.fillText("d", 128 / 2 - 4, 128 / 2 - 5);
+            }
         }
     </script>
 </body>
