@@ -43,7 +43,7 @@
         }
 
         {
-            // Hexagone
+            // Background
             context.lineWidth = 6;
 
             context.beginPath();
@@ -59,34 +59,69 @@
             }
             context.closePath();
 
-            if (true) {
-                // On
-                context.fillStyle = "lightpink";
-            } else {
-                // Off
-                context.fillStyle = "lightgrey";
+            switch (1) {
+                case 1:
+                    // On
+                    context.fillStyle = "lightpink";
+                    break;
+                case 2:
+                    // Off
+                    context.fillStyle = "lightgrey";
+                    break;
             }
 
             context.fill();
+
             context.strokeStyle = "black";
             context.stroke();
         }
 
         {
-            // Letter
+            // Foreground
             context.textAlign = "center";
             context.textBaseline = "middle";
 
             context.fillStyle = "black";
 
-            if (false) {
-                // Nano Adblocker
-                context.font = "90px Comic Sans MS";
-                context.fillText("n", 128 / 2 - 1, 128 / 2 - 13);
-            } else {
-                // Nano Defender
-                context.font = "80px Comic Sans MS";
-                context.fillText("d", 128 / 2 - 4, 128 / 2 - 5);
+            switch (3) {
+                case 1:
+                    // Nano Adblocker
+                    context.font = "90px Comic Sans MS";
+                    context.fillText("n", 128 / 2 - 1, 128 / 2 - 13);
+                    break;
+                case 2:
+                    // Nano Defender
+                    context.font = "80px Comic Sans MS";
+                    context.fillText("d", 128 / 2 - 4, 128 / 2 - 5);
+                    break;
+                case 3:
+                    // Nano Lab
+                    context.lineJoin = "round";
+                    context.beginPath();
+
+                    context.moveTo(128 / 2 - 7, 30);
+                    context.lineTo(128 / 2 - 7, 65);
+                    context.lineTo(128 / 2 - 30, 90);
+
+                    context.lineTo(128 / 2 + 30, 90);
+                    context.lineTo(128 / 2 + 7, 65);
+                    context.lineTo(128 / 2 + 7, 30);
+
+                    context.stroke();
+
+
+                    context.lineJoin = "miter";
+
+                    context.beginPath();
+                    context.moveTo(128 / 2 - 12, 30);
+                    context.lineTo(128 / 2 - 4, 30);
+                    context.stroke();
+
+                    context.beginPath();
+                    context.moveTo(128 / 2 + 12, 30);
+                    context.lineTo(128 / 2 + 4, 30);
+                    context.stroke();
+                    break;
             }
         }
     </script>
